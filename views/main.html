@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <!-- 로그인 user 있을 때 -->
+    <form class="job-form">
+      <h4>new job</h4>
+      <div class="form-control">
+        <div class="company-field">
+          <label for="company">Company</label>
+          <input
+            type="text"
+            id="company"
+            class="job-input"
+            placeholder="company"
+          />
+        </div>
+        <div class="position-field">
+          <label for="position">Position</label>
+          <input
+            type="text"
+            id="position"
+            class="job-input"
+            placeholder="position"
+          />
+        </div>
+        <button type="submit" class="btn submit-btn">submit</button>
+      </div>
+    </form>
+    <!-- 로그인 user 있을 때, jobs 없을 때 -->
+    <p class="no-jobs">You have no jobs to display</p>
+    <!-- 로그인 user 있을 때, jobs 있을 때 -->
+    <div class="single-job">
+      <p class="date">7.21.2022</p>
+      <div class="job-info">
+        <p class="position">Front-End</p>
+        <p class="company">apple</p>
+      </div>
+      <div class="bottom">
+        <div class="left">
+          <a href="/12" class="edit">Edit</a>
+          <a href="/12" class="delete">Delete</a>
+        </div>
+        <p class="status">pending</p>
+      </div>
+    </div>
+    <script>
+    </script>
+  </body>
+</html>

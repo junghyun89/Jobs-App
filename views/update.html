@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <!-- 로그인 user 있을 때 -->
+    <form class="job-form">
+      <h4>update job</h4>
+      <div class="form-control">
+        <div class="company-field">
+          <label for="company">Company</label>
+          <input
+            type="text"
+            id="company"
+            class="job-input"
+            value="company"
+          />
+        </div>
+        <div class="position-field">
+          <label for="position">Position</label>
+          <input
+            type="text"
+            id="position"
+            class="job-input"
+            value="position"
+          />
+        </div>
+        <div class="status-field">
+          <label for="status">Status</label>
+          <div class="status-radios">
+            <div>
+              <input
+              type="radio"
+              id="pending"
+              value="pending"
+              name="status"
+              />
+              <label for="pending">pending</label>
+            </div>
+            <div>
+              <input
+              type="radio"
+              id="interview"
+              value="interview"
+              name="status"
+              checked
+              />
+              <label for="interview">interview</label>
+            </div>
+            <div>
+              <input
+              type="radio"
+              id="declined"
+              value="declined"
+              name="status"
+              />
+              <label for="declined">declined</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn submit-btn">edit</button>
+      </div>
+    </form>
+  
+    <script>
+    </script>
+  </body>
+</html>
