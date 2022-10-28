@@ -9,14 +9,14 @@
   </head>
   <body>
     {% include "navbar.html" %}
-    <form class="register-form">
+    <form class="register-form" action="/auth/register" method="post">
       <h4>register</h4>
       <div class="form-control">
         <div class="name-field">
           <label for="name">Name</label>
           <input
             type="text"
-            id="name"
+            name="name"
             class="register-input"
             placeholder="name"
           />
@@ -24,8 +24,8 @@
         <div class="email-field">
           <label for="email">Email</label>
           <input
-            type="text"
-            id="email"
+            type="email"
+            name="email"
             class="register-input"
             placeholder="email"
           />
@@ -34,7 +34,7 @@
           <label for="password">Password</label>
           <input
             type="password"
-            id="password"
+            name="password"
             class="register-input"
             placeholder="password"
           />
@@ -52,12 +52,8 @@
       <div class="tasks"></div>
     </section>
     <!-- axios -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./browser-app.js"></script>
+    <script>
+
+    </script>
   </body>
 </html>
