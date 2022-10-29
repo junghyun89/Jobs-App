@@ -277,6 +277,12 @@ textarea {
     border-bottom-right-radius: var(--borderRadius);
   }
 }
+@media screen and (min-width: 780px) {
+  .single-jobs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  }
+}
 form > :first-child {
   margin-top: 0;
 }
@@ -389,8 +395,9 @@ form > :last-child {
   display: grid;
   gap: 1rem;
 }
+
 .single-job {
-  max-width: 20rem;
+  /* max-width: 20rem; */
   background: var(--white);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
@@ -398,6 +405,7 @@ form > :last-child {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 2rem 0.7rem;
 }
 .single-job:hover {
   box-shadow: var(--shadow-4);
@@ -438,9 +446,11 @@ form > :last-child {
   gap: 0.5rem;
 }
 .single-job .bottom .edit {
+  cursor: pointer;
   color: var(--green-dark);
 }
 .single-job .bottom .delete {
+  cursor: pointer;
   color: var(--red-dark);
 }
 .single-job .bottom .status {

@@ -9,7 +9,7 @@
   </head>
   <body>
     {% include "navbar.html" %}
-    <form class="login-form">
+    <form class="login-form" action="/auth/login" method="post">
       <h4>login</h4>
       <div class="form-control">
         <div class="email-field">
@@ -17,8 +17,10 @@
           <input
             type="text"
             id="email"
+            name="email"
             class="login-input"
             placeholder="email"
+            autofocus
           />
         </div>
         <div class="password-field">
@@ -26,6 +28,7 @@
           <input
             type="password"
             id="password"
+            name="password"
             class="login-input"
             placeholder="password"
           />

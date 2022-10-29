@@ -12,10 +12,16 @@
       <a href="/" class="logo">Jobs-App</a>
     {% if main %}
       <div class="right">
-        <p>Hello, Peter</p>
-        <a href="/login" class="btn">Login</a>
+      {% if user %}
+        <p>Hello, {{user.name}}</p>
+        <a class="btn" href="/auth/logout">Logout</a>
+      {% else %}
+        <a class="btn" href="/login">Login</a>
+      {% endif %}
       </div>
     {% endif %}
     </div>
   </body>
+  <script>
+  </script>
 </html>

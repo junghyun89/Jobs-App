@@ -10,7 +10,7 @@
   <body>
     {% include "navbar.html" %}
     <!-- 로그인 user 있을 때 -->
-    <form class="job-form">
+    <form class="job-form update" data-id="{{job._id}}">
       <h4>update job</h4>
       <div class="form-control">
         <div class="company-field">
@@ -19,7 +19,7 @@
             type="text"
             id="company"
             class="job-input"
-            value="company"
+            value={{job.company}}
           />
         </div>
         <div class="position-field">
@@ -28,10 +28,10 @@
             type="text"
             id="position"
             class="job-input"
-            value="position"
+            value={{job.position}}
           />
         </div>
-        <div class="status-field">
+        <div class="status-field" data-status="{{job.status}}">
           <label for="status">Status</label>
           <div class="status-radios">
             <div>
@@ -49,7 +49,6 @@
               id="interview"
               value="interview"
               name="status"
-              checked
               />
               <label for="interview">interview</label>
             </div>
@@ -67,8 +66,39 @@
         <button type="submit" class="btn submit-btn">edit</button>
       </div>
     </form>
-  
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+      const statusTag = document.querySelector('.status-field');
+      const statusInputs = document.querySelectorAll('.status-field input')
+      const status = statusTag.dataset.status;
+      statusInputs.forEach((input) => {
+        if (input.value === status) {
+          input.checked = true
+        }
+      })
+
+      const updateForm = document.querySelector('.job-form.update');
+      updateForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const id = (e.target.dataset.id);
+        const company = updateForm.querySelector('#company').value
+        const position = updateForm.querySelector('#position').value
+        const status = updateForm.querySelector('.status-field')
+        console.log(status)
+        // axios({
+        //     method: 'patch',
+        //     url: `/jobs/${id}`,
+        //     company, 
+        //     position, 
+        //     status
+        //   })
+        //   .then(() => {
+        //     location.replace('/');
+        //   })
+        //   .catch((err) => {
+        //     console.error(err);
+        //   });
+      })
     </script>
   </body>
 </html>
