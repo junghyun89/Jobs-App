@@ -23,5 +23,17 @@
     </div>
   </body>
   <script>
+    let scrollPrevious = window.pageYOffset;
+    const navbar = document.querySelector('.nav-bar')
+
+    window.addEventListener('scroll', () => {
+      const scrollCurrent = window.pageYOffset;
+      if (scrollPrevious > scrollCurrent) {
+        navbar.style.top = '0px';
+      } else {
+        navbar.style.top = '-72px';
+      }
+      scrollPrevious = scrollCurrent;
+    });
   </script>
 </html>

@@ -10,7 +10,7 @@
   <body>
     {% include "navbar.html" %}
     <!-- 로그인 user 있을 때 -->
-    <form class="job-form update" data-id="{{job._id}}">
+    <form class="job-form update" data-id="{{job._id}}" action="/jobs/{{job._id}}">
       <h4>update job</h4>
       <div class="form-control">
         <div class="company-field">
@@ -19,6 +19,7 @@
             type="text"
             id="company"
             class="job-input"
+            required
             value={{job.company}}
           />
         </div>
@@ -28,6 +29,7 @@
             type="text"
             id="position"
             class="job-input"
+            required
             value={{job.position}}
           />
         </div>
@@ -83,21 +85,28 @@
         const id = (e.target.dataset.id);
         const company = updateForm.querySelector('#company').value
         const position = updateForm.querySelector('#position').value
-        const status = updateForm.querySelector('.status-field')
-        console.log(status)
-        // axios({
-        //     method: 'patch',
-        //     url: `/jobs/${id}`,
-        //     company, 
-        //     position, 
-        //     status
-        //   })
-        //   .then(() => {
-        //     location.replace('/');
-        //   })
-        //   .catch((err) => {
-        //     console.error(err);
-        //   });
+        const radios = updateForm.querySelectorAll('.status-field input')
+        let status;
+        radios.forEach((radio) => {
+          if (radio.checked) {
+            return status = radio.value
+          }
+        })
+        axios({
+            method: 'patch',
+            url: `/jobs/${id}`,
+            data: {
+              company, 
+              position, 
+              status
+            }
+          })
+          .then(() => {
+            location.replace('/');
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
     </script>
   </body>

@@ -21,6 +21,7 @@
             name="company"
             class="job-input"
             placeholder="company"
+            required
           />
         </div>
         <div class="position-field">
@@ -31,14 +32,15 @@
             name="position"
             class="job-input"
             placeholder="position"
+            required
           />
         </div>
         <button type="submit" class="btn submit-btn">submit</button>
       </div>
     </form>
   {% if jobs %}
-  <div class="single-jobs">
-    {%for job in jobs %}
+    <div class="single-jobs">
+      {%for job in jobs %}
       <div class="single-job">
         <p class="date">{{job.createdAt}}</p>
         <div class="job-info">
@@ -59,7 +61,10 @@
     <p class="no-jobs">You have no jobs to display</p>
   {% endif %}
   {% else %}
-    <div>hello</div>
+    <div class="main">
+      <p>welcome</p>
+      <img src="/main.png" alt="">
+    </div>
   {% endif %}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>

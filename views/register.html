@@ -9,7 +9,7 @@
   </head>
   <body>
     {% include "navbar.html" %}
-    <form class="register-form" action="/auth/register" method="post">
+    <form class="register-form">
       <h4>register</h4>
       <div class="form-control">
         <div class="name-field">
@@ -19,6 +19,8 @@
             name="name"
             class="register-input"
             placeholder="name"
+            id="name"
+            required
           />
         </div>
         <div class="email-field">
@@ -28,6 +30,8 @@
             name="email"
             class="register-input"
             placeholder="email"
+            id="email"
+            required
           />
         </div>
         <div class="password-field">
@@ -37,6 +41,8 @@
             name="password"
             class="register-input"
             placeholder="password"
+            id="password"
+            required
           />
         </div>
         <button type="submit" class="btn submit-btn">submit</button>
@@ -51,9 +57,37 @@
       <p class="loading-text">Loading...</p>
       <div class="tasks"></div>
     </section>
-    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-
+      const registerForm = document.querySelector('.register-form');
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const name = registerForm.querySelector('#name').value
+        const email = registerForm.querySelector('#email').value
+        const password = registerForm.querySelector('#password').value
+        axios({
+          method: 'post',
+          url: `/auth/register`,
+          data: {
+            name, 
+            email, 
+            password
+          }
+        })
+        .then((res) => {
+          if (res.data.message) {
+            alert(res.data.message);
+            registerForm.querySelectorAll('input').forEach((input) => {
+              input.value = ''
+            })
+          } else {
+            location.replace('/login')
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      })
     </script>
   </body>
 </html>

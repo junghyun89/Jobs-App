@@ -6,7 +6,7 @@ const { isLoggedIn, isNotLoggedIn } = require('../middleware/check-loggedIn');
 router.use(async (req, res, next) => {
   const jobs = await Job.find({ createdBy: req.user?._id });
   res.locals.user = req.user;
-  res.locals.jobs = jobs;
+  res.locals.jobs = jobs.length === 0 ? null : jobs;
   next();
 });
 

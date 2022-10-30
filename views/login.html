@@ -9,7 +9,7 @@
   </head>
   <body>
     {% include "navbar.html" %}
-    <form class="login-form" action="/auth/login" method="post">
+    <form class="login-form">
       <h4>login</h4>
       <div class="form-control">
         <div class="email-field">
@@ -21,6 +21,7 @@
             class="login-input"
             placeholder="email"
             autofocus
+            required
           />
         </div>
         <div class="password-field">
@@ -31,6 +32,7 @@
             name="password"
             class="login-input"
             placeholder="password"
+            required
           />
         </div>
         <button type="submit" class="btn submit-btn">submit</button>
@@ -45,13 +47,35 @@
       <p class="loading-text">Loading...</p>
       <div class="tasks"></div>
     </section>
-    <!-- axios -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./browser-app.js"></script>
   </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const loginForm = document.querySelector('.login-form');
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const email = loginForm.querySelector('#email').value
+        const password = loginForm.querySelector('#password').value
+        axios({
+          method: 'post',
+          url: `/auth/login`,
+          data: {
+            email, 
+            password
+          }
+        })
+        .then((res) => {
+          if (res.data.message) {
+            alert(res.data.message);
+            loginForm.querySelectorAll('input').forEach((input) => {
+              input.value = ''
+            })
+          } else {
+            location.replace('/')
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      })
+    </script>
 </html>

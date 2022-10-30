@@ -12,7 +12,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
       return next(authError);
     }
     if (!user) {
-      return res.redirect(`/?loginError=${info.message}`);
+      return res.send({ message: `${info.message}` });
     }
     return req.login(user, (loginError) => {
       if (loginError) {
@@ -29,7 +29,7 @@ router.post('/register', isNotLoggedIn, async (req, res, next) => {
   try {
     const exUser = await User.findOne({ email: email });
     if (exUser) {
-      return res.redirect('/register?error=exist');
+      return res.send({ message: '이미 가입된 회원입니다.' });
     }
     const hash = await bcrypt.hash(password, 12);
     await User.create({

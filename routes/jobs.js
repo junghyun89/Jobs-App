@@ -26,12 +26,10 @@ router.post('/', isLoggedIn, async (req, res, next) => {
 router.patch('/:id', isLoggedIn, async (req, res, next) => {
   try {
     const { company, position, status } = req.body;
-    await Job.findOneAndUpdate({
-      _id: req.params.id,
-      company,
-      position,
-      status,
-    });
+    await Job.findOneAndUpdate(
+      { _id: req.params.id },
+      { company, position, status }
+    );
     res.send('ok');
   } catch (error) {
     console.error(error);
